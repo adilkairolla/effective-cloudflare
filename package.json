@@ -1,17 +1,27 @@
 {
   "name": "effective-cloudflare",
   "private": true,
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
+  "workspaces": {
+    "packages": [
+      "apps/*",
+      "packages/*"
+    ],
+    "catalog": {
+      "effect": "^3.21.2",
+      "@effect/platform": "^0.96.1",
+      "@effect/language-service": "^0.85.1",
+      "typescript": "^6.0.3"
+    }
+  },
   "type": "module",
   "scripts": {
+    "prepare": "effect-language-service patch",
+    "typecheck": "tsc --noEmit",
     "fmt": "oxfmt",
     "fmt:check": "oxfmt --check",
     "lint": "oxlint",
     "lint:fix": "oxlint --fix",
-    "check": "bun run fmt:check && bun run lint"
+    "check": "bun run typecheck && bun run fmt:check && bun run lint"
   },
   "devDependencies": {
     "oxfmt": "latest",
