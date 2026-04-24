@@ -1,0 +1,15 @@
+{
+  "name": "queues",
+  "version": "0.0.0",
+  "private": true,
+  "scripts": {
+    "start": "wrangler dev --persist-to ../.wrangler",
+    "cf-typegen": "wrangler types --env-interface CloudflareBindings",
+    "check-types": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@types/node": "catalog:",
+    "typescript": "catalog:",
+    "wrangler": "catalog:"
+  }
+}

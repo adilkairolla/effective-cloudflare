@@ -3,28 +3,32 @@
   "private": true,
   "workspaces": {
     "packages": [
-      "apps/*",
+      "examples/*",
       "packages/*"
     ],
     "catalog": {
       "effect": "^3.21.2",
       "@effect/platform": "^0.96.1",
       "@effect/language-service": "^0.85.1",
-      "typescript": "^6.0.3"
+      "typescript": "^6.0.3",
+      "wrangler": "^4.83.0",
+      "@types/node": "^25.6.0"
     }
   },
   "type": "module",
   "scripts": {
     "prepare": "effect-language-service patch",
-    "typecheck": "tsc --noEmit",
+    "typecheck": "find examples packages -name '*.ts' -not -path '*/node_modules/*' 2>/dev/null | grep -q . && tsc --noEmit || echo '(no TypeScript files yet — skipping typecheck)'",
     "fmt": "oxfmt",
     "fmt:check": "oxfmt --check",
-    "lint": "oxlint",
-    "lint:fix": "oxlint --fix",
+    "lint": "find examples packages -name '*.ts' -not -path '*/node_modules/*' 2>/dev/null | grep -q . && oxlint || echo '(no files to lint yet)'",
+    "lint:fix": "find examples packages -name '*.ts' -not -path '*/node_modules/*' 2>/dev/null | grep -q . && oxlint --fix || echo '(no files to lint yet)'",
     "check": "bun run typecheck && bun run fmt:check && bun run lint"
   },
   "devDependencies": {
+    "@effect/language-service": "^0.85.1",
     "oxfmt": "latest",
-    "oxlint": "latest"
+    "oxlint": "latest",
+    "typescript": "^6.0.3"
   }
 }

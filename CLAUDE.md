@@ -24,7 +24,8 @@ details when the documentation isn't enough.
 
 ## Tooling
 
-- **Package manager:** bun (workspace at repo root; apps live under `apps/*`)
+- **Package manager:** bun (workspace at repo root; examples live under `examples/*`, shared packages under `packages/*`)
+- **Version pinning:** Effect + TypeScript versions pinned via bun catalog in root `package.json`; workspace packages reference them as `"catalog:"`
 - **Formatter:** `bun run fmt` (oxfmt) / `bun run fmt:check`
 - **Linter:** `bun run lint` (oxlint) / `bun run lint:fix`
 - **Type check:** `bun run typecheck` (tsc --noEmit, patched with Effect diagnostics)
